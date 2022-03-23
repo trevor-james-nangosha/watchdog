@@ -1,9 +1,18 @@
 //handling the imports
-import express from 'express'
-import session from 'express-session'
-import cors from 'cors'
-import mongoose from 'mongoose'
-import connectDB from './config/dbConn'
+// import express from 'express'
+// import session from 'express-session'
+// import cors from 'cors'
+// import mongoose from 'mongoose'
+// import connectDB from './config/dbConn'
+
+//shift + tab is the opposite of tab
+
+const express = require('express')
+const session = require('express-session')
+const cors = require('cors')
+const mongoose = require('mongoose')
+const connectDB = require('./config/dbConn')
+const MongoStore = require('connect-mongo')
 
 //defining the constants and variables
 const app = express()
@@ -17,6 +26,10 @@ app.use(cors({
 }))
 app.use(session({
     secret: "nangosha trevor james",
+    store: MongoStore.create({
+        mongoUrl: 'mongodb://localhost/sessionsDB',
+        collection: 'sessions'
+    }),
     saveUninitialized: true,
     resave: false,
     cookie: {
@@ -25,7 +38,7 @@ app.use(session({
 }))
 
 //connect to the mongoDB
-connectDB()
+connectDB();
 
 //the routes
 app.get('/', (req, res) => {
