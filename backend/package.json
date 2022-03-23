@@ -3,7 +3,6 @@
   "version": "1.0.1",
   "description": "this is a security application",
   "main": "server.js",
-  "type": "module",
   "scripts": {
     "start": "nodemon server.js"
   },

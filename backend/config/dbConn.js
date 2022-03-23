@@ -1,9 +1,11 @@
-import mongoose from "mongoose";
-DATABASE_URI = "mongodb://localhost/sessionsDB'"
+const mongoose = require('mongoose')
+DATABASE_URI = "mongodb://localhost/sessionsDB"
+
+//mongoDB will create the sessionsDB the first time anything is saved to it
 
 const connectDB = async () => {
     try {
-        mongoose.connect(DATABASE_URI, {
+        await mongoose.connect(DATABASE_URI, {
             useUnifiedTopology: true,
             useNewUrlParser: true
         })
@@ -12,4 +14,6 @@ const connectDB = async () => {
     }
 }
 
-export default connectDB;
+// export default connectDB;
+
+module.exports = connectDB;
